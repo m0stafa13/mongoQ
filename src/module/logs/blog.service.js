@@ -4,7 +4,6 @@ import { bookModel, logModel } from "../../main.js"
 
 export const insetLog = async (body) => {
     try {
-
         let { book_id, action } = body
         const checkBook = await bookModel.findOne({ _id: new ObjectId(book_id) })
         if (checkBook) {
