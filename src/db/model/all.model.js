@@ -18,15 +18,18 @@ export const createBookCollection = async () => {
             }
         });
         return {
-            message: "collection created successfully",
+            data: {
+                message: "collection created successfully",
+            },
             code: 201
         }
     } catch (error) {
         return {
-            message: "collection already exists",
-            code: 409
+            data: {
+                message: "something went wrong",
+            },
+            code: 500
         }
-
     }
 };
 // crate index
@@ -35,32 +38,36 @@ export const crateBookIndex = async () => {
     try {
         await database.collection("books").createIndex({ title: 1 })
         return {
-            message: "index added successfully",
+            data: { message: "index added successfully" },
             code: 201
         }
     } catch (error) {
         return {
-            message: "index already exists",
-            code: 409
+            data: { message: "some thing went wrong" },
+            code: 500
         }
     }
 }
 
 // blog model with capped and size
-export const crateBlogCollection = async () => {
+export const crateLogCollection = async () => {
     try {
         await database.createCollection("blog", {
             capped: true,
             size: 1048576
         })
         return {
-            message: "collection crated successfully"
-            , code: 409
+            code: 201,
+            data: {
+                message: "collection created successfully"
+            }
         }
     } catch (error) {
         return {
-            message: "collection already exists",
-            code: 409
+            code: 500,
+            data: {
+                message: "some thing went wrong"
+            }
         }
     }
 }

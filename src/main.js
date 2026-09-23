@@ -3,6 +3,7 @@ import { env } from "./config/config.service.js";
 import { dbConnection } from "./db/connection.js";
 import bookRouter from "./module/book/book.controller.js";
 import logRouter from "./module/logs/blog.controller.js";
+import createRouter from "./module/creation/creaation.controller.js";
 const app = express();
 app.use(express.json());
 // database connection 
@@ -16,7 +17,8 @@ export const authorModel = database.collection("authors")
 // blog collection to use it 
 export const logModel = database.collection("blog")
 
-
+// crete db router
+app.use("/db", createRouter)
 // book router 
 app.use("/books", bookRouter)
 // blog router 
